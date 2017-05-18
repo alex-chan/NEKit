@@ -162,24 +162,24 @@ open class IPPacket {
     var TTL: UInt8 = 64
 
     /// Source IP address.
-    var sourceAddress: IPAddress!
+    public var sourceAddress: IPAddress!
 
     /// Destination IP address.
-    var destinationAddress: IPAddress!
+    public var destinationAddress: IPAddress!
 
     /// Transport protocol of the packet.
-    var transportProtocol: TransportProtocol!
+    public var transportProtocol: TransportProtocol!
 
     /// Parser to parse the payload in IP packet.
-    var protocolParser: TransportProtocolParserProtocol!
+    public var protocolParser: TransportProtocolParserProtocol!
 
     /// The data representing the packet.
-    var packetData: Data!
+    public var packetData: Data!
 
     /**
      Initailize a new instance to build IP packet.
      */
-    init() {}
+    public init() {}
 
     /**
      Initailize an `IPPacket` with data.
@@ -260,7 +260,7 @@ open class IPPacket {
         return result
     }
 
-    func buildPacket() {
+    open func buildPacket() {
         packetData = NSMutableData(length: Int(headerLength) + protocolParser.bytesLength) as Data!
 
         // set header

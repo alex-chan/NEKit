@@ -114,9 +114,12 @@ open class DNSServer: DNSResolverDelegate, IPStackProtocol {
      - returns: If the packet is taken in by this DNS server.
      */
     open func input(packet: Data, version: NSNumber?) -> Bool {
+
+        
         guard IPPacket.peekProtocol(packet) == .udp else {
             return false
         }
+
 
         guard IPPacket.peekDestinationAddress(packet) == serverAddress else {
             return false
@@ -134,7 +137,8 @@ open class DNSServer: DNSResolverDelegate, IPStackProtocol {
             return false
         }
 
-        queue.async {
+//        queue.async {
+        QueueFactory.executeOnQueueSynchronizedly {
             self.lookup(session)
         }
         return true

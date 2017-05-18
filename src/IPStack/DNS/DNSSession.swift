@@ -3,7 +3,7 @@ import CocoaLumberjackSwift
 
 open class DNSSession {
     open let requestMessage: DNSMessage
-    var requestIPPacket: IPPacket?
+    open var requestIPPacket: IPPacket?
     open var realIP: IPAddress?
     open var fakeIP: IPAddress?
     open var realResponseMessage: DNSMessage?
@@ -11,7 +11,7 @@ open class DNSSession {
     open var matchedRule: Rule?
     open var matchResult: DNSSessionMatchResult?
     var indexToMatch = 0
-    var expireAt: Date?
+    open var expireAt: Date?
     lazy var countryCode: String? = {
         [unowned self] in
         guard self.realIP != nil else {
